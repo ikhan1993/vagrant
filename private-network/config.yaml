@@ -1,0 +1,29 @@
+# used to create vm in vagrant, below is an array of the data to each vm
+---
+# below is just a example and can be used
+# one array
+- name: puppet-master
+  box: centos/7
+  cpus: 1
+  memory: 2048
+  guest-port: 1
+  host-port: 1
+  ip: 10.0.0.10
+- name: puppet-slave
+  box: centos/7
+  cpus: 1
+  memory: 2048
+  guest-port: 8081
+  host-port: 8081
+  ip: 10.0.0.11
+- name: puppet-slave-jenkins
+  box: centos/7
+  cpus: 1
+  memory: 2048
+  guest-port: 8080
+  host-port: 8080
+  ip: 10.0.1.11
+  scripts:
+  - puppet-slave
+  - puppet-slave-setup
+...
