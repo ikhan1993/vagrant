@@ -1,0 +1,9 @@
+sudo /bin/bash -c "echo '10.0.0.10 puppet-master puppetmaster' >> /etc/hosts"
+sudo /bin/bash -c "echo '127.0.0.1' $(facter fqdn) 'puppet' >> /etc/hosts"
+sudo /bin/bash -c "echo $(facter ipaddress_eth1) $(facter fqdn) 'puppet' >> /etc/hosts"
+
+sudo /bin/bash -c "echo '[main]' >> /etc/puppetlabs/puppet/puppet.conf"
+sudo /bin/bash -c "echo 'server = puppet-master' >> /etc/puppetlabs/puppet/puppet.conf"
+sudo /bin/bash -c "echo 'environment = production' >> /etc/puppetlabs/puppet/puppet.conf"
+
+puppet agent --test --server=puppet-master
